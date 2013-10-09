@@ -1,4 +1,3 @@
-radioactive = require 'radioactive'
 
 tags_ = radioactive.cell init: 'coffee,nature'
 img_ = radioactive.cell()
@@ -22,7 +21,7 @@ draw_search_box = ->
     bind: tags_
 
 draw_result = ->
-  if ( radioactive.ready -> fetch_images() )
+  unless ( radioactive.syncify.busy -> fetch_images() )
     draw_img img for img in fetch_images()
   else
     '.progress.progress-striped.active .bar'._ $width: '100%'
@@ -41,4 +40,4 @@ flickr_async = ( tags, cb ) ->
   opts = format: 'json', tagmode:'all', tags: tags
   $.getJSON url, opts, (d) -> cb null, d.items
 
-flickr_sync = radioactive.sync flickr_async
+flickr_sync = radioactive.syncify flickr_async, global: yes
