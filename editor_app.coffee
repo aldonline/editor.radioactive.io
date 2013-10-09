@@ -1,4 +1,5 @@
-ra = require 'radioactive'
+cell = require 'reactive-supercell'
+reactivity = require 'reactivity'
 rac = require './client/util/radioactive_compiler'
 customize = require './client/ace_editor/customize'
 _ = require 'underscore'
@@ -11,7 +12,7 @@ TOTAL = util.get_win_width_cell()
 PREVIEW_WIDTH = -> 960
 EDITOR_WIDTH  = -> TOTAL() - PREVIEW_WIDTH()
 
-code = ra.cell persist: 'standalone_editor_code', init: ''
+code = cell persist: 'standalone_editor_code', init: ''
 
 $ ->
   delay 500, -> setup_editor_and_preview $('#editor'), $('#preview')
@@ -66,7 +67,7 @@ setup_editor_and_preview = ( editor, preview ) ->
 
   handle_change = -> code session.getValue()
 
-  ra.reactivity code, (e, r) ->
+  reactivity code, (e, r) ->
     $preview.children().remove()
     try
       $preview.append rac r

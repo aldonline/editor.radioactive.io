@@ -1,4 +1,4 @@
-radioactive = require 'radioactive'
+cell = require 'reactive-supercell'
 $ = require './jquery'
 
 serial = 0
@@ -18,7 +18,7 @@ module.exports =
 
   # TODO: use events
   get_win_width_cell: ->
-    dw_ = radioactive.cell init: 940
+    dw_ = cell init: 940
     $ ->
       d = $(window)
       setInterval ( -> dw_ d.width() ), 300
