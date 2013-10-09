@@ -1,0 +1,17 @@
+/* */
+.example-tabs li {
+  height: 30px;
+}
+.example-tabs li > a {
+  color: #999;
+  font-size: 12px;
+  height: 20px;
+}
+.example-tabs li.active > a {
+  background-color: #ddd;
+  color: #555;
+}
+.example-tabs li.active > a:hover {
+  background-color: #555;
+  color: white;
+}
